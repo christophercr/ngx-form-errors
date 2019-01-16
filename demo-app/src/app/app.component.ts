@@ -23,69 +23,94 @@ export class AppComponent implements OnInit {
 	public ngOnInit(): void {
 		// user details form validations
 		this.formMatError = this.formBuilder.group({
-			fullname: ["John Doe", Validators.required],
+			username: [undefined, Validators.required],
 			matchingPasswords: new FormGroup(
 				{
 					password: new FormControl(
 						"",
 						Validators.compose([
-							Validators.minLength(5),
-							Validators.maxLength(25),
+							Validators.minLength(3),
+							Validators.maxLength(10),
 							Validators.required,
 							Validators.pattern(this.passwordPattern) // this is for the letters (both uppercase and lowercase) and numbers validation
 						])
 					),
 					confirmPassword: new FormControl("", Validators.required)
 				},
-				(formGroup: AbstractControl) => {
-					return PasswordValidator.areEqual(<FormGroup>formGroup);
+				{
+					validators: (formGroup: AbstractControl) => {
+						return PasswordValidator.areEqual(<FormGroup>formGroup);
+					}
 				}
 			)
 		});
 
 		this.formNgxError = this.formBuilder.group({
-			fullname: ["John Smith", Validators.required],
+			username: [undefined, Validators.required],
 			matchingPasswords: new FormGroup(
 				{
 					password: new FormControl(
 						"",
 						Validators.compose([
-							Validators.minLength(5),
-							Validators.maxLength(25),
+							Validators.minLength(3),
+							Validators.maxLength(10),
 							Validators.required,
 							Validators.pattern(this.passwordPattern) // this is for the letters (both uppercase and lowercase) and numbers validation
 						])
 					),
 					confirmPassword: new FormControl("", Validators.required)
 				},
-				(formGroup: AbstractControl) => {
-					return PasswordValidator.areEqual(<FormGroup>formGroup);
+				{
+					validators: (formGroup: AbstractControl) => {
+						return PasswordValidator.areEqual(<FormGroup>formGroup);
+					}
 				}
 			)
 		});
 
 		this.validationMessages = {
-			fullname: [
-				{ type: "required", message: "DEMO.FORM_VALIDATION.FULL_NAME.REQUIRED", rules: ["touched", "dirty"] },
-				{ type: "minlength", message: "DEMO.FORM_VALIDATION.FULL_NAME.MIN_LENGTH", rules: ["touched", "dirty"] },
-				{ type: "maxlength", message: "DEMO.FORM_VALIDATION.FULL_NAME.MAX_LENGTH", rules: ["touched", "dirty"] },
-				{ type: "pattern", message: "DEMO.FORM_VALIDATION.FULL_NAME.PATTERN", rules: ["touched", "dirty"] },
-				{ type: "unique", message: "DEMO.FORM_VALIDATION.FULL_NAME.UNIQUE", rules: ["touched", "dirty"] }
+			username: [
+				{
+					type: "required",
+					message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.USER_NAME.REQUIRED"
+				},
+				{
+					type: "minlength",
+					message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.USER_NAME.MIN_LENGTH"
+				},
+				{
+					type: "maxlength",
+					message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.USER_NAME.MAX_LENGTH"
+				},
+				{ type: "pattern", message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.USER_NAME.PATTERN" },
+				{ type: "unique", message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.USER_NAME.UNIQUE" }
 			],
 			password: [
-				{ type: "required", message: "DEMO.FORM_VALIDATION.PASSWORD.REQUIRED", rules: ["touched", "dirty"] },
-				{ type: "minlength", message: "DEMO.FORM_VALIDATION.PASSWORD.MIN_LENGTH", rules: ["touched", "dirty"] },
-				{ type: "pattern", message: "DEMO.FORM_VALIDATION.PASSWORD.PATTERN", rules: ["touched", "dirty"] }
+				{
+					type: "required",
+					message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.PASSWORD.REQUIRED"
+				},
+				{
+					type: "minlength",
+					message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.PASSWORD.MIN_LENGTH"
+				},
+				{ type: "pattern", message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.PASSWORD.PATTERN" }
 			],
 			confirmPassword: [
-				{ type: "required", message: "DEMO.FORM_VALIDATION.CONFIRM_PASSWORD.REQUIRED", rules: ["touched", "dirty"] },
-				{ type: "areEqual", message: "DEMO.FORM_VALIDATION.CONFIRM_PASSWORD.ARE_EQUAL", rules: ["touched", "dirty"] }
+				{
+					type: "required",
+					message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.CONFIRM_PASSWORD.REQUIRED"
+				},
+				{
+					type: "areEqual",
+					message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.CONFIRM_PASSWORD.ARE_EQUAL"
+				}
 			]
 		};
 	}
 
-	public onSubmitUserDetails(value: FormGroup): void {
-		console.log("CCR==========> onSubmitUserDetails value", value);
+	public onSubmitUserDetails(formGroup: FormGroup): void {
+		console.log("CCR==========> onSubmitUserDetails value", formGroup.value);
 	}
 
 	public getFormStatus(): void {
