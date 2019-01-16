@@ -8,23 +8,38 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { MatListModule } from "@angular/material/list";
+import { MatSidenavModule } from "@angular/material/sidenav";
 import { NgxFormErrorsMessageService, NgxFormErrorsModule } from "@nationalbankbelgium/ngx-form-errors";
 import { AppComponent } from "./app.component";
 import { initializeTranslation } from "./translation.config";
 import { LanguageSelectorComponent, SimpleFormErrorComponent, TranslatedFormErrorComponent } from "./components";
+import { AppRoutingModule } from "./app-routing.module";
+import { ReactiveFormsExampleComponent } from "./pages/reactive-forms-example/reactive-forms-example.component";
+import { NgxFormsExampleComponent } from "./pages/ngx-forms-example/ngx-forms-example.component";
 
 /* tslint:disable:no-hardcoded-credentials */
 @NgModule({
-	declarations: [AppComponent, LanguageSelectorComponent, SimpleFormErrorComponent, TranslatedFormErrorComponent],
+	declarations: [
+		AppComponent,
+		LanguageSelectorComponent,
+		SimpleFormErrorComponent,
+		TranslatedFormErrorComponent,
+		ReactiveFormsExampleComponent,
+		NgxFormsExampleComponent
+	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
+		AppRoutingModule,
 		FormsModule,
 		MatButtonModule,
 		MatButtonToggleModule,
 		MatCardModule,
 		MatFormFieldModule,
 		MatInputModule,
+		MatListModule,
+		MatSidenavModule,
 		ReactiveFormsModule,
 		TranslateModule.forRoot(),
 		NgxFormErrorsModule.forRoot({

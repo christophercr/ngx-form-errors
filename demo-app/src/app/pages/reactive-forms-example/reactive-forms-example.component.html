@@ -1,0 +1,96 @@
+<form [formGroup]="formMatError" (ngSubmit)="onSubmitUserDetails(formMatError)" class="form-group">
+	<div class="mat-display-1">Plain Reactive Forms</div>
+
+	<mat-form-field class="username">
+		<input matInput [placeholder]="'DEMO.PLACEHOLDERS.USER_NAME' | translate" formControlName="username" required />
+		<mat-error *ngFor="let validation of validationMessages.username">
+			<div
+				class="error-message"
+				*ngIf="
+					formMatError.get('username').hasError(validation.type) &&
+					(formMatError.get('username').dirty || formMatError.get('username').touched)
+				"
+			>
+				{{ validation.message | translate }}
+			</div>
+		</mat-error>
+	</mat-form-field>
+	<div formGroupName="matchingPasswords" class="matching-passwords">
+		<mat-form-field class="full-width">
+			<input matInput type="password" [placeholder]="'DEMO.PLACEHOLDERS.PASSWORD' | translate" formControlName="password" required />
+			<mat-error *ngFor="let validation of validationMessages.password">
+				<div
+					class="error-message"
+					*ngIf="
+						formMatError
+							.get('matchingPasswords')
+							.get('password')
+							.hasError(validation.type) &&
+						(formMatError.get('matchingPasswords').get('password').dirty ||
+							formMatError.get('matchingPasswords').get('password').touched)
+					"
+				>
+					{{ validation.message | translate }}
+				</div>
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field class="full-width">
+			<input
+				matInput
+				type="password"
+				[placeholder]="'DEMO.PLACEHOLDERS.CONFIRM_PASSWORD' | translate"
+				formControlName="confirmPassword"
+				[errorStateMatcher]="parentErrorStateMatcher"
+				required
+			/>
+			<mat-error *ngFor="let validation of validationMessages.confirmPassword">
+				<div
+					class="error-message"
+					*ngIf="
+						(formMatError
+							.get('matchingPasswords')
+							.get('confirmPassword')
+							.hasError(validation.type) ||
+							formMatError.get('matchingPasswords').hasError(validation.type)) &&
+						(formMatError.get('matchingPasswords').get('confirmPassword').dirty ||
+							formMatError.get('matchingPasswords').get('confirmPassword').touched)
+					"
+				>
+					{{ validation.message | translate }}
+				</div>
+			</mat-error>
+		</mat-form-field>
+	</div>
+	<div class="form-buttons">
+		<button color="primary" mat-raised-button type="submit" [disabled]="!formMatError.valid">Submit</button>
+		<button color="primary" mat-raised-button type="button" (click)="getFormStatus()">Get Form status</button>
+	</div>
+
+	<div class="form-validation-info">
+		<mat-card class="form-field-info">
+			<!-- <div>Has errors: {{ reactiveForm.get("username").errors }}</div> -->
+			<!-- <div>Has 'required' error: {{ reactiveForm.get("username").hasError("required") }}</div> -->
+			<!-- <div>Is valid?: {{ reactiveForm.get("username").isValid() }}</div> -->
+			<!-- <div>'required' error: {{ reactiveForm.get("username").getError("required") | json }}</div> -->
+			<!-- <div>Is touched? {{ reactiveForm.get("username").touched }}</div> -->
+			<!-- <div *ngIf="reactiveForm.get('username').hasErrors">Errors: {{ reactiveForm.get("username").errors | json }}</div> -->
+		</mat-card>
+		<mat-card class="form-field-info">
+			<!-- <div>Has errors: {{ reactiveForm.get("password").errors }}</div> -->
+			<!-- <div>Has 'pattern' error: {{ reactiveForm.get("password").hasError("pattern") }}</div> -->
+			<!-- <div>Is valid?: {{ reactiveForm.get("password").isValid() }}</div> -->
+			<!-- <div>Is touched? {{ reactiveForm.get("password").touched }}</div> -->
+			<!-- <div>'pattern' error: {{ reactiveForm.get("password").getError("pattern") | json }}</div> -->
+			<!-- <div *ngIf="reactiveForm.get('password').hasErrors">Errors: {{ reactiveForm.get("password").errors | json }}</div> -->
+		</mat-card>
+		<mat-card class="form-field-info">
+			<!-- <div>Has errors: {{ reactiveForm.get("confirmPassword").errors }}</div> -->
+			<!-- <div>Has 'pattern' error: {{ reactiveForm.get("confirmPassword").hasError("pattern") }}</div> -->
+			<!-- <div>Is valid?: {{ reactiveForm.get("confirmPassword").isValid() }}</div> -->
+			<!-- <div>Is touched? {{ reactiveForm.get("confirmPassword").touched }}</div> -->
+			<!-- <div>'pattern' error: {{ reactiveForm.get("confirmPassword").getError("pattern") | json }}</div> -->
+			<!-- <div *ngIf="reactiveForm.get('confirmPassword').hasErrors">Errors: {{ reactiveForm.get("confirmPassword").errors | json }}</div> -->
+		</mat-card>
+	</div>
+</form>
