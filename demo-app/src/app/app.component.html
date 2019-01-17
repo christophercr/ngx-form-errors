@@ -1,16 +1,17 @@
-<!--<img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">-->
-<h1 class="mat-h1">Ngx-Form-Errors</h1> <h2 class="mat-h2">Validation messages in Reactive Forms made easy</h2>
-
+<header class="container">
+	<h1 class="mat-display-3 app-title">Ngx-Form-Errors</h1>
+	<h2 class="mat-display-3 app-subtitle">Validation messages in Reactive Forms made easy</h2>
+</header>
 <!--<button mat-button (click)="sidenav.toggle()">Toggle Sidenav</button>-->
 
 <mat-sidenav-container class="example-container">
 	<mat-sidenav #sidenav mode="side" opened>
 		<app-language-selector></app-language-selector>
 		<mat-list>
-			<mat-list-item><a routerLink="/template-driven-forms" routerLinkActive="active">Template Driven Forms</a></mat-list-item>
-			<mat-list-item><a routerLink="/reactive-forms" routerLinkActive="active">Reactive Forms</a></mat-list-item>
-			<mat-list-item><a routerLink="/ngx-form-errors" routerLinkActive="active">Ngx Form Errors</a></mat-list-item>
+			<mat-list-item routerLink="/template-driven-forms" routerLinkActive="active"> Template Driven Forms </mat-list-item>
+			<mat-list-item routerLink="/reactive-forms" routerLinkActive="active"> Reactive Forms </mat-list-item>
+			<mat-list-item routerLink="/ngx-form-errors" routerLinkActive="active"> Ngx Form Errors </mat-list-item>
 		</mat-list>
 	</mat-sidenav>
-	<mat-sidenav-content> <router-outlet></router-outlet> </mat-sidenav-content>
+	<mat-sidenav-content class="container"> <router-outlet></router-outlet> </mat-sidenav-content>
 </mat-sidenav-container>

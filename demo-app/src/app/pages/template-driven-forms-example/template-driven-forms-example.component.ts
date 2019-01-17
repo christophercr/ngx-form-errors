@@ -16,7 +16,7 @@ export class TemplateDrivenFormsExampleComponent implements OnInit {
 
 	public parentErrorStateMatcher: ErrorStateMatcher = new ParentErrorStateMatcher();
 	public passwordPattern: string = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$";
-	public validationMessages: object;
+	public validationMessages: { [key: string]: { [key: string]: any } };
 	public showValidationDetails: boolean = true;
 	public showValidationSummary: boolean = true;
 

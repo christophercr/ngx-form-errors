@@ -10,6 +10,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatGridListModule } from "@angular/material/grid-list";
 import { NgxFormErrorsMessageService, NgxFormErrorsModule } from "@nationalbankbelgium/ngx-form-errors";
 import { AppComponent } from "./app.component";
 import { initializeTranslation } from "./translation.config";
@@ -42,6 +43,7 @@ import { TemplateDrivenFormsExampleComponent } from "./pages/template-driven-for
 		MatInputModule,
 		MatListModule,
 		MatSidenavModule,
+		MatGridListModule,
 		ReactiveFormsModule,
 		TranslateModule.forRoot(),
 		NgxFormErrorsModule.forRoot({
