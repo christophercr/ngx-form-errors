@@ -23,7 +23,7 @@
           "PATTERN": "Uw wachtwoord moet minimaal één hoofdletter, één kleine letter en één cijfer bevatten"
         },
         "CONFIRM_PASSWORD": {
-          "REQUIRED": "bevestig wachtwoord is verplicht",
+          "REQUIRED": "Bevestig wachtwoord is verplicht",
           "ARE_EQUAL": "Wachtwoord komt niet overeen"
         }
       },
