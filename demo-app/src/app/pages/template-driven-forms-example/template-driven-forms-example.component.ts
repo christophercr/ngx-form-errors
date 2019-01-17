@@ -1,57 +1,36 @@
 /*tslint:disable:completed-docs trackBy-function template-cyclomatic-complexity*/
 import { Component, OnInit } from "@angular/core";
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { NgForm } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
-import { PasswordValidator } from "../../password-validator";
 import { ParentErrorStateMatcher } from "../../parent-error-state-matcher";
 
 @Component({
-	selector: "app-reactive-forms-example",
-	templateUrl: "./reactive-forms-example.component.html",
-	styleUrls: ["./reactive-forms-example.component.scss"]
+	selector: "app-template-driven-forms-example",
+	templateUrl: "./template-driven-forms-example.component.html",
+	styleUrls: ["./template-driven-forms-example.component.scss"]
 })
-export class ReactiveFormsExampleComponent implements OnInit {
-	public formMatError: FormGroup;
-	public validationMessages: object;
+export class TemplateDrivenFormsExampleComponent implements OnInit {
+	public username: string;
+	public password: string;
+	public confirmPassword: string;
+
 	public parentErrorStateMatcher: ErrorStateMatcher = new ParentErrorStateMatcher();
 	public passwordPattern: string = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$";
+	public validationMessages: object;
 	public showValidationDetails: boolean = true;
 	public showValidationSummary: boolean = true;
 
-	public constructor(private formBuilder: FormBuilder) {}
+	public constructor() {
+		/*empty*/
+	}
 
 	public ngOnInit(): void {
-		// user details form validations
-		this.formMatError = this.formBuilder.group({
-			username: [undefined, Validators.required],
-			matchingPasswords: new FormGroup(
-				{
-					password: new FormControl(
-						"",
-						Validators.compose([
-							Validators.minLength(3),
-							Validators.maxLength(10),
-							Validators.required,
-							Validators.pattern(this.passwordPattern) // this is for the letters (both uppercase and lowercase) and numbers validation
-						])
-					),
-					confirmPassword: new FormControl("", Validators.required)
-				},
-				{
-					validators: (formGroup: AbstractControl) => {
-						return PasswordValidator.areEqual(<FormGroup>formGroup);
-					}
-				}
-			)
-		});
-
 		this.validationMessages = {
 			username: [
 				{
 					type: "required",
 					message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.USER_NAME.REQUIRED"
-				},
-				{ type: "unique", message: "DEMO.FORM_VALIDATION.WITHOUT_NGX_FORM_ERRORS.USER_NAME.UNIQUE" }
+				}
 			],
 			password: [
 				{
@@ -85,11 +64,11 @@ export class ReactiveFormsExampleComponent implements OnInit {
 		this.showValidationSummary = !this.showValidationSummary;
 	}
 
-	public onSubmitUserDetails(formGroup: FormGroup): void {
+	public onSubmitUserDetails(formGroup: NgForm): void {
 		console.log("CCR==========> onSubmitUserDetails value", formGroup.value);
 	}
 
-	public getFormStatus(): void {
-		console.log("CCR==========> form status", this.formMatError);
+	public getFormStatus(formGroup: NgForm): void {
+		console.log("CCR==========> form status", formGroup);
 	}
 }

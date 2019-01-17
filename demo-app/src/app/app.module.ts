@@ -17,6 +17,7 @@ import { LanguageSelectorComponent, SimpleFormErrorComponent, TranslatedFormErro
 import { AppRoutingModule } from "./app-routing.module";
 import { ReactiveFormsExampleComponent } from "./pages/reactive-forms-example/reactive-forms-example.component";
 import { NgxFormsExampleComponent } from "./pages/ngx-forms-example/ngx-forms-example.component";
+import { TemplateDrivenFormsExampleComponent } from "./pages/template-driven-forms-example/template-driven-forms-example.component";
 
 /* tslint:disable:no-hardcoded-credentials */
 @NgModule({
@@ -26,7 +27,8 @@ import { NgxFormsExampleComponent } from "./pages/ngx-forms-example/ngx-forms-ex
 		SimpleFormErrorComponent,
 		TranslatedFormErrorComponent,
 		ReactiveFormsExampleComponent,
-		NgxFormsExampleComponent
+		NgxFormsExampleComponent,
+		TemplateDrivenFormsExampleComponent
 	],
 	imports: [
 		BrowserModule,

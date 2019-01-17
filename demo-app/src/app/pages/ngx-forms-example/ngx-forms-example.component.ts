@@ -1,8 +1,9 @@
+/*tslint:disable:completed-docs trackBy-function template-cyclomatic-complexity*/
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, Validators, FormControl, FormBuilder, AbstractControl } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { ParentErrorStateMatcher } from "../../parent-error-state-matcher";
-import { PasswordValidator } from "src/app/password-validator";
+import { PasswordValidator } from "../../password-validator";
 
 @Component({
 	selector: "app-ngx-forms-example",
@@ -14,10 +15,12 @@ export class NgxFormsExampleComponent implements OnInit {
 	public errors: object;
 	public parentErrorStateMatcher: ErrorStateMatcher = new ParentErrorStateMatcher();
 	public passwordPattern: string = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$";
+	public showValidationDetails: boolean = true;
+	public showValidationSummary: boolean = true;
 
 	public constructor(private formBuilder: FormBuilder) {}
 
-	public ngOnInit() {
+	public ngOnInit(): void {
 		this.formNgxError = this.formBuilder.group({
 			username: [undefined, Validators.required],
 			matchingPasswords: new FormGroup(
@@ -40,6 +43,14 @@ export class NgxFormsExampleComponent implements OnInit {
 				}
 			)
 		});
+	}
+
+	public toggleValidationDetails(): void {
+		this.showValidationDetails = !this.showValidationDetails;
+	}
+
+	public toggleValidationSummary(): void {
+		this.showValidationSummary = !this.showValidationSummary;
 	}
 
 	public onSubmitUserDetails(formGroup: FormGroup): void {
